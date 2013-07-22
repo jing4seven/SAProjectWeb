@@ -1,0 +1,7 @@
+<ul>
+	{% for project in user_projects.results%}
+		<li>
+			<a href="#">{{ project.alias }}</a>
+		</li>
+	{% endfor %}	
+</ul>

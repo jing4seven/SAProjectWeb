@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% load container_tags %}
+
+{% block title %}{{ "dashboard"  }}{% endblock %}
+
+{% block left_column %}
+	{% widget project_tree_id project_tree_url %}
+{% endblock %}
