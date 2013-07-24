@@ -3,7 +3,7 @@ from ConfigParser import RawConfigParser
 
 # Load config file
 config = RawConfigParser()
-config.read("D:\saproject_workspace\web_settings.ini")
+config.read("D:\saproject_workspace\web.settings.ini")
 
 # Debug
 DEBUG = config.getboolean('debug','DEBUG')
@@ -138,7 +138,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     #'django.contrib.admindocs',
     'lib',
-    'SAProjectWeb.secure',
+    'secure',
 )
 
 # A sample logging configuration. The only tangible logging
