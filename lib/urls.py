@@ -4,7 +4,7 @@ from . import URLS_TYPE_API, URLS_TYPE_FRENTEND
 _api_urls = {
     'USER_GET': '/api/secure/user/{username}',
     'USER_PROJECTS_GET': '/api/owner/{owner-username}/projects/',    
-    'PROJECT_RELEASES_GET': '/api/owner/{owner-username}/project/{project-name}/releases',
+    'PROJECT_RELEASES_GET': '/api/owner/{owner-username}/project/{project-name}/releases',    
 }
 
 _fe_urls = {

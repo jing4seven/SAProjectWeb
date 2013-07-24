@@ -13,10 +13,11 @@ class FeTemplateView(TemplateView):
     context = None
 
     def __init__(self, *args, **kwargs):
+        print kwargs
         self.context = self.__get_default_context__()
 
-    def get_data(self, request, url, method, data, obj_name):
-        self.context_data[obj_name] = get_api_data(request.user["username"], url, method, data)  
+    def get_data(self, requestor, url, method, data, obj_name):
+        self.context_data[obj_name] = get_api_data(requestor, url, method, data)  
         self.context.update(self.context_data)               
                 
     def __get_default_context__(self):

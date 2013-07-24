@@ -1,0 +1,7 @@
+<ul>
+	{% for release in project_releases.results%}
+		<li>
+			<a href="#">{{ release.name }}</a>
+		</li>
+	{% endfor %}	
+</ul>
