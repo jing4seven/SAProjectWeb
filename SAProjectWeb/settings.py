@@ -3,7 +3,7 @@ from ConfigParser import RawConfigParser
 
 # Load config file
 config = RawConfigParser()
-config.read("D:\saproject_workspace\web.settings.ini")
+config.read("/etc/SAProject/web.settings.ini")
 
 # Debug
 DEBUG = config.getboolean('debug','DEBUG')
@@ -138,6 +138,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     #'django.contrib.admindocs',
     'lib',
+    'login',
     'secure',
 )
 
@@ -149,6 +150,11 @@ INSTALLED_APPS = (
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': "%(asctime)s [%(processName)s(%(process)d) %(threadName)s(%(thread)d)] %(levelname)s %(pathname)s - line %(lineno)d - %(message)s",
+        },
+    },
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
@@ -159,15 +165,23 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'log_file': {
+            'level': 'DEBUG',
+            'class':'logging.handlers.TimedRotatingFileHandler',
+            'filename': '/var/log/django/SAProjectWeb.log',
+            'when': 'D',
+            'interval': 1,
+            'formatter': 'verbose',
+        },
     },
     'loggers': {
         'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
+            'handlers': ['mail_admins','log_file'],
+            'level': 'DEBUG',
             'propagate': True,
         },
-    }
+    },
 }
 
 # Only for front-end
