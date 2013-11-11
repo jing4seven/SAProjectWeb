@@ -3,7 +3,7 @@ from ConfigParser import RawConfigParser
 
 # Load config file
 config = RawConfigParser()
-config.read("D:\saproject_workspace\web.settings.ini")
+config.read("/etc/SAProject/web.settings.ini")
 
 # Debug
 DEBUG = config.getboolean('debug','DEBUG')
