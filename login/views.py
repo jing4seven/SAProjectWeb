@@ -1,7 +1,12 @@
-from django.http.response import HttpResponse
-from lib.views import BaseView
+from lib.pages import BasePage
 
-class Login(BaseView):
+class Login(BasePage):
 
-	def get(self, request, *args, **kwargs):			
-		return HttpResponse("aaa", args, kwargs);
+	template_name = "login.html"
+	
+
+	def before_render(self, request, *args, **kwargs):
+		self.set_title("Login")
+		self.add_context(name='Juicy Chen')
+		return
+	

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE | default('en-us') }}" >
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{ page_title }}</title>
+
+		{{ CSSResource.push('css/bootstrap-responsive.css') }}
+		{{ CSSResource.push('css/bootstrap.css') }}
+		{{ CSSResource.push('css/custom.css') }}
+
+		{{ CSSResource.render() }}
+	</head>
+	<body>
+		<div class="page">
+			<div class="header">
+			</div>
+			<div class="content">
+				{% block content %}
+				{% endblock content %}
+			</div>
+			<div class="footer">
+			</div>
+		</div>
+	</body>
+</html>

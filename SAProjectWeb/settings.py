@@ -193,4 +193,19 @@ FRONT_END = {
     'API_HOST': config.get('frontend', 'API_HOST'),
     'API_PORT': config.get('frontend', 'API_PORT'),
     'ALLOW_GUEST': config.get('frontend', 'ALLOW_GUEST'),
+    'CACHE_KEY_PREFIX': config.get('frontend', 'CACHE_KEY_PREFIX'),
+    'DEFAULT_LAYOUT': config.get('frontend', 'DEFAULT_LAYOUT'),
 }
+
+# cache config
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+        'TIMEOUT': 86400, # unit is seconds, 60*60*24 = 86400 = 1 day
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000
+        }
+    }
+}
+

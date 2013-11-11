@@ -1,0 +1,10 @@
+{% extends layout_template %}
+
+{% block content %}
+	{{ CSSResource.push('css/login.css') }}
+	<ul>
+		{% for file in files %}
+			<li>{{ file }}</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
