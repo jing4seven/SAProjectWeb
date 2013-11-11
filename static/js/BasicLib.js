@@ -2277,28 +2277,6 @@ function(global, require, module, exports) {
 
 
 
-// Set Resources for async load.
-window.Bootloader.setResourceMap({
-                "cu2cX": {
-                    "type": "js",
-                    "crossOrigin": 0,
-                    "src": "http:\/\/www.saproject.com:9000\/static\/modules\/js1.js"
-					},
-				"mUc2c": {
-					"type": "css",
-                    "permanent": 1,
-					"crossOrigin": 0,
-                    "src": "http:\/\/www.saproject.com:9000\/static\/modules\/css1.css"
-					}
-				});
-				
-				
-window.Bootloader.loadResources(['cu2cX', 'mUc2c'], function(){
-	alert('yes');
-}); 
-
-
-
 
 
 
