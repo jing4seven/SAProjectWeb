@@ -2,13 +2,13 @@ from __future__ import unicode_literals
 
 from lib import HTTP_METHOD_GET, HTTP_METHOD_POST, \
                 URLS_TYPE_FRENTEND, URLS_TYPE_API, urls
-from lib.views import FeTemplateView
+from lib.views import BaseView
 
 USER_PROJECTS = 'USER_PROJECTS_GET'
 PROJECT_RELEASES = 'PROJECT_RELEASES_GET'
 
 
-class dashboard_view(FeTemplateView):
+class dashboard_view(BaseView):
     '''
     Dashboard view.
     '''
@@ -28,7 +28,7 @@ class dashboard_view(FeTemplateView):
         self.context.update(variables)
         return self.render_to_response(self.context)
 
-class project_tree_view(FeTemplateView):
+class project_tree_view(BaseView):
     
     template_name = 'projects_tree.html'
 
@@ -40,7 +40,7 @@ class project_tree_view(FeTemplateView):
         
         return self.render_to_response(self.context)
     
-class release_tree_view(FeTemplateView):
+class release_tree_view(BaseView):
     
     template_name = 'releases_tree.html'
 

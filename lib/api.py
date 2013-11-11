@@ -1,5 +1,5 @@
-from django.conf import settings
 import requests
+from django.conf import settings
 
 from . import HTTP_METHOD_GET, HTTP_METHOD_POST
 from auth import hmac_auth

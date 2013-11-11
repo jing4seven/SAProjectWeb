@@ -138,6 +138,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     #'django.contrib.admindocs',
     'lib',
+    'login',
     'secure',
 )
 
@@ -149,6 +150,11 @@ INSTALLED_APPS = (
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': "%(asctime)s [%(processName)s(%(process)d) %(threadName)s(%(thread)d)] %(levelname)s %(pathname)s - line %(lineno)d - %(message)s",
+        },
+    },
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
@@ -159,15 +165,23 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'log_file': {
+            'level': 'DEBUG',
+            'class':'logging.handlers.TimedRotatingFileHandler',
+            'filename': '/var/log/django/SAProjectWeb.log',
+            'when': 'D',
+            'interval': 1,
+            'formatter': 'verbose',
+        },
     },
     'loggers': {
         'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
+            'handlers': ['mail_admins','log_file'],
+            'level': 'DEBUG',
             'propagate': True,
         },
-    }
+    },
 }
 
 # Only for front-end
@@ -179,4 +193,19 @@ FRONT_END = {
     'API_HOST': config.get('frontend', 'API_HOST'),
     'API_PORT': config.get('frontend', 'API_PORT'),
     'ALLOW_GUEST': config.get('frontend', 'ALLOW_GUEST'),
+    'CACHE_KEY_PREFIX': config.get('frontend', 'CACHE_KEY_PREFIX'),
+    'DEFAULT_LAYOUT': config.get('frontend', 'DEFAULT_LAYOUT'),
 }
+
+# cache config
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+        'TIMEOUT': 86400, # unit is seconds, 60*60*24 = 86400 = 1 day
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000
+        }
+    }
+}
+
